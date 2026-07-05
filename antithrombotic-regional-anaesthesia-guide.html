@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regional Anaesthesia &amp; Antithrombotic Drugs — ESAIC/ESRA Interval Guide</title>
+<style>
+  :root{
+    --paper:#f4f2ec;
+    --ink:#16232b;
+    --navy:#1b3a4b;
+    --navy-deep:#0f2530;
+    --rule:#c9c2b2;
+    --high:#b3392f;
+    --high-bg:#f7e6e3;
+    --mod:#b9791a;
+    --mod-bg:#faf0dc;
+    --low:#2b7a63;
+    --low-bg:#e4f1ec;
+    --paper-card:#fffdf8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Georgia",serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .util{font-family:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;}
+  .sans{font-family:"Helvetica Neue",Arial,sans-serif;}
+
+  header.masthead{
+    border-bottom:3px double var(--navy);
+    padding:28px 6vw 18px 6vw;
+    background:linear-gradient(180deg, #efeadf 0%, var(--paper) 100%);
+  }
+  .masthead-eyebrow{
+    font-family:"IBM Plex Mono",monospace;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:11px;
+    color:var(--navy);
+    opacity:.75;
+    margin-bottom:6px;
+  }
+  h1.title{
+    font-size:clamp(26px,3.6vw,42px);
+    margin:0 0 6px 0;
+    font-weight:600;
+    color:var(--navy-deep);
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:14px;
+    color:#4a5760;
+    max-width:760px;
+    line-height:1.5;
+  }
+  .subtitle b{color:var(--navy-deep);}
+
+  nav.tabs{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:var(--paper);
+    border-bottom:1px solid var(--rule);
+    padding:10px 6vw 0 6vw;
+    display:flex;
+    gap:4px;
+    overflow-x:auto;
+    scrollbar-width:thin;
+  }
+  nav.tabs::-webkit-scrollbar{height:6px;}
+  nav.tabs::-webkit-scrollbar-thumb{background:var(--rule);border-radius:3px;}
+
+  .tab-btn{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.01em;
+    white-space:nowrap;
+    background:transparent;
+    border:none;
+    border-bottom:3px solid transparent;
+    padding:10px 14px 12px 14px;
+    cursor:pointer;
+    color:#5c6870;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .tab-btn:hover{color:var(--navy-deep);}
+  .tab-btn.active{
+    color:var(--navy-deep);
+    border-bottom-color:var(--high);
+  }
+  .tab-btn .tab-index{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:10px;
+    opacity:.55;
+    margin-right:6px;
+  }
+
+  main{
+    padding:34px 6vw 80px 6vw;
+    max-width:1180px;
+    margin:0 auto;
+  }
+
+  .drug-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .drug-name{
+    font-size:clamp(24px,3vw,34px);
+    color:var(--navy-deep);
+    font-weight:600;
+  }
+  .drug-agents{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13px;
+    color:#6a746c;
+  }
+  .drug-note{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13.5px;
+    color:#4a5760;
+    max-width:820px;
+    line-height:1.55;
+    margin:10px 0 26px 0;
+    padding:12px 16px;
+    background:#eeeadd;
+    border-left:3px solid var(--navy);
+  }
+
+  .dose-toggle{
+    display:inline-flex;
+    margin-bottom:26px;
+    border:1px solid var(--navy);
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .dose-toggle button{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:12.5px;
+    font-weight:600;
+    padding:7px 16px;
+    border:none;
+    background:var(--paper-card);
+    color:var(--navy-deep);
+    cursor:pointer;
+  }
+  .dose-toggle button + button{border-left:1px solid var(--navy);}
+  .dose-toggle button.active{background:var(--navy);color:#fff;}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+    gap:20px;
+  }
+
+  .card{
+    background:var(--paper-card);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:20px 20px 18px 20px;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;
+    height:4px;
+  }
+  .card.risk-high::before{background:var(--high);}
+  .card.risk-mod::before{background:var(--mod);}
+  .card.risk-low::before{background:var(--low);}
+
+  .card-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:14px;
+  }
+  .card-title{
+    font-size:17px;
+    font-weight:600;
+    color:var(--navy-deep);
+  }
+  .risk-badge{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:10px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:3px 8px;
+    border-radius:20px;
+    font-weight:600;
+  }
+  .risk-high .risk-badge{background:var(--high-bg);color:var(--high);}
+  .risk-mod .risk-badge{background:var(--mod-bg);color:var(--mod);}
+  .risk-low .risk-badge{background:var(--low-bg);color:var(--low);}
+
+  .card-examples{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:11.5px;
+    color:#7d8781;
+    margin-bottom:14px;
+    line-height:1.4;
+  }
+
+  /* timeline signature element */
+  .timeline{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    margin:14px 0 18px 0;
+    font-family:"IBM Plex Mono",monospace;
+  }
+  .tl-node{
+    text-align:center;
+    font-size:10.5px;
+    color:#6a746c;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+  }
+  .tl-node .tl-time{
+    display:block;
+    font-size:14px;
+    color:var(--navy-deep);
+    font-weight:700;
+    margin-top:2px;
+    letter-spacing:0;
+  }
+  .risk-high .tl-node.left .tl-time, .risk-high .tl-node.right .tl-time{color:var(--high);}
+  .risk-mod .tl-node.left .tl-time, .risk-mod .tl-node.right .tl-time{color:var(--mod);}
+  .risk-low .tl-node.left .tl-time, .risk-low .tl-node.right .tl-time{color:var(--low);}
+  .tl-line{
+    position:relative;
+    height:2px;
+    background:var(--rule);
+    margin:0 8px;
+  }
+  .tl-line::after{
+    content:"●";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    font-size:8px;
+    color:var(--navy);
+  }
+
+  .field{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:13px;
+    line-height:1.55;
+    margin-bottom:10px;
+    color:#2c363c;
+  }
+  .field .label{
+    display:block;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:#8b8f7f;
+    margin-bottom:2px;
+  }
+  .field:last-child{margin-bottom:0;}
+
+  footer{
+    padding:24px 6vw 60px 6vw;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:11.5px;
+    color:#8b9198;
+    border-top:1px solid var(--rule);
+    max-width:1180px;
+    margin:0 auto;
+    line-height:1.6;
+  }
+  @media (max-width:640px){
+    main{padding:24px 5vw 60px 5vw;}
+    header.masthead{padding:22px 5vw 16px 5vw;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-eyebrow">ESAIC / ESRA Joint Guideline · Eur J Anaesthesiol 2022;39:100–132</div>
+  <h1 class="title">Regional Anaesthesia on Antithrombotic Drugs</h1>
+  <p class="subtitle">An interval reference built from <b>Table 2</b> (block bleeding-risk categories), <b>Table 3</b> (high bleeding-risk blocks) and <b>Table 4</b> (superficial blocks). Choose a drug class, then read the timing across the three block categories. This tool summarises the published guideline for quick lookup — it does not replace it; consult the source document and local protocols for individual patient decisions.</p>
+</header>
+
+<nav class="tabs" id="tabs"></nav>
+
+<main id="main"></main>
+
+<footer>
+  Source: Kietaibl S, Ferrandis R, Godier A, et al. Regional anaesthesia in patients on antithrombotic drugs: Joint ESAIC/ESRA guidelines. <i>Eur J Anaesthesiol</i> 2022; 39:100–132. All time intervals, laboratory targets and block categorisations reproduced here are drawn directly from Tables 2, 3 and 4 of that publication. CrCl = creatinine clearance; INR = International Normalised Ratio; DXA = direct Xa antagonist; DTI = direct thrombin inhibitor.
+</footer>
+
+<script>
+/* ---------------------------------------------------------
+   DATA — transcribed from Table 2 (block categories),
+   Table 3 (high bleeding-risk blocks: neuraxial + deep PNB)
+   and Table 4 (superficial / low bleeding-risk PNB)
+--------------------------------------------------------- */
+const DRUGS = [
+  {
+    id: "vka",
+    name: "Vitamin K Antagonists",
+    agents: "warfarin · acenocoumarol · phenprocoumon · fluindione",
+    note: "Neuraxial and deep-block timing is governed by return of INR to normal, not by a fixed day count alone — the day figures are typical, not absolute.",
+    doses: null,
+    sections: {
+      neuraxial: {
+        risk:"high",
+        last:"Until INR returns to normal local range — typically 3 days (acenocoumarol), 5 days (warfarin, fluindione), 7 days (phenprocoumon)",
+        target:"INR normal (e.g. ≤1.1). INR <1.5 may be acceptable in selected patients after individual risk–benefit analysis.",
+        next:"Per guidelines on postoperative VTE prophylaxis or therapeutic anticoagulation. If a neuraxial catheter is in place, VKA is resumed only after its withdrawal; a low dose of LMWH may bridge in the interim."
+      },
+      deep:{
+        risk:"high",
+        last:"Same as neuraxial procedures — treated as an equivalent bleeding-risk block.",
+        target:"INR normal, as above.",
+        next:"As per neuraxial recommendations above."
+      },
+      superficial:{
+        risk:"low",
+        last:"Zero — may proceed irrespective of the target INR.",
+        target:"No routine testing required.",
+        next:"At the routinely prescribed next time point."
+      }
+    }
+  },
+  {
+    id:"dxa",
+    name:"Direct Xa Antagonists (DOAC)",
+    agents:"rivaroxaban · edoxaban · apixaban",
+    note:"Low doses = VTE prophylaxis / extended VTE prevention dosing; high doses = stroke prevention in AF or acute VTE treatment dosing (see Table 1).",
+    doses:["low","high"],
+    sections:{
+      low:{
+        neuraxial:{
+          risk:"mod",
+          last:"24 h (rivaroxaban, edoxaban) — extend to 30 h if CrCl <30 ml/min. 36 h for apixaban.",
+          target:"No routine testing.",
+          next:"Per postoperative VTE prophylaxis guidelines, about 8 h postop. Catheter: resume only after withdrawal; low-dose LMWH/UFH may bridge."
+        },
+        deep:{
+          risk:"mod",
+          last:"Same interval as neuraxial procedures above.",
+          target:"No routine testing.",
+          next:"As per neuraxial recommendations above."
+        },
+        superficial:{
+          risk:"low",
+          last:"Zero — may proceed at either dose.",
+          target:"No routine testing.",
+          next:"At the routinely prescribed next time point."
+        }
+      },
+      high:{
+        neuraxial:{
+          risk:"high",
+          last:"72 h, or until target lab value (target required if CrCl <30 ml/min).",
+          target:"Calibrated DXA level <30 ng/ml (alternative: anti-Xa ≤0.1 IU/ml).",
+          next:"Per therapeutic anticoagulation guidelines, about 24 h postop. Catheter: resume only after withdrawal; low-dose LMWH/UFH may bridge in the interim."
+        },
+        deep:{
+          risk:"high",
+          last:"Same interval as neuraxial procedures above.",
+          target:"As above.",
+          next:"As per neuraxial recommendations above."
+        },
+        superficial:{
+          risk:"mod",
+          last:"Zero, if within/below the patient's individual therapeutic range.",
+          target:"Consider specific lab test if drug accumulation suspected (e.g. renal insufficiency).",
+          next:"At the routinely prescribed next time point."
+        }
+      }
+    }
+  },
+  {
+    id:"dabigatran",
+    name:"Dabigatran",
+    agents:"direct thrombin inhibitor (DTI)",
+    note:"Separated from other DOACs in the guideline because of its distinct renal elimination and specific antidote (idarucizumab).",
+    doses:["low","high"],
+    sections:{
+      low:{
+        neuraxial:{risk:"mod", last:"48 h before the procedure.", target:"No routine testing.", next:"Per postoperative VTE prophylaxis guidelines."},
+        deep:{risk:"mod", last:"Same as neuraxial procedures.", target:"No routine testing.", next:"As per neuraxial recommendations."},
+        superficial:{risk:"low", last:"Zero.", target:"No routine testing.", next:"At the routinely prescribed next time point."}
+      },
+      high:{
+        neuraxial:{
+          risk:"high",
+          last:"72 h, or until target lab value (required if CrCl <50 ml/min).",
+          target:"DTI level <30 ng/ml (alternative: thrombin time within local normal range).",
+          next:"Per therapeutic anticoagulation guidelines, about 24 h postop."
+        },
+        deep:{risk:"high", last:"Same as neuraxial procedures.", target:"As above.", next:"As per neuraxial recommendations."},
+        superficial:{risk:"mod", last:"Zero, if within/below therapeutic range.", target:"Consider specific lab test if renal insufficiency.", next:"At the routinely prescribed next time point."}
+      }
+    }
+  },
+  {
+    id:"lmwh",
+    name:"Low Molecular Weight Heparin",
+    agents:"enoxaparin (reference) · dalteparin · nadroparin · tinzaparin (extrapolated)",
+    note:"Low dose ≤50 IU anti-Xa/kg/day (enoxaparin ≤40 mg/day); high dose >50 IU anti-Xa/kg/day. Halve the dose or double the interval if CrCl <30 ml/min.",
+    doses:["low","high"],
+    sections:{
+      low:{
+        neuraxial:{
+          risk:"mod",
+          last:"12 h before the procedure (24 h if CrCl <30 ml/min).",
+          target:"No routine testing.",
+          next:"Per postoperative VTE prophylaxis guidelines."
+        },
+        deep:{risk:"mod", last:"Same as neuraxial procedures.", target:"No routine testing.", next:"As per neuraxial recommendations."},
+        superficial:{risk:"low", last:"Zero.", target:"No routine testing.", next:"At the routinely prescribed next time point."}
+      },
+      high:{
+        neuraxial:{
+          risk:"high",
+          last:"24 h before the procedure (48 h if CrCl <30 ml/min).",
+          target:"Anti-Xa activity ≤0.1 IU/ml.",
+          next:"Resume only after catheter withdrawal — high-dose LMWH should not be given with a catheter in situ. Low-dose LMWH may bridge in the interim."
+        },
+        deep:{risk:"high", last:"Same as neuraxial procedures.", target:"As above.", next:"As per neuraxial recommendations."},
+        superficial:{risk:"mod", last:"Zero, if within/below therapeutic range.", target:"Consider anti-Xa if accumulation suspected.", next:"At the routinely prescribed next time point."}
+      }
+    }
+  },
+  {
+    id:"ufh",
+    name:"Unfractionated Heparin",
+    agents:"IV or subcutaneous, calcium or sodium heparin",
+    note:"Low dose ≤200 IU/kg/day SC or ≤100 IU/kg/day IV; high dose above these thresholds.",
+    doses:["low","high"],
+    sections:{
+      low:{
+        neuraxial:{
+          risk:"mod",
+          last:"4 h before the procedure.",
+          target:"No routine testing.",
+          next:"Per postoperative VTE prophylaxis guidelines. A shorter 1 h interval may be acceptable in vascular surgery after individual risk–benefit analysis."
+        },
+        deep:{risk:"mod", last:"Same as neuraxial procedures.", target:"No routine testing.", next:"As per neuraxial recommendations."},
+        superficial:{risk:"low", last:"Zero.", target:"No routine testing.", next:"At the routinely prescribed next time point."}
+      },
+      high:{
+        neuraxial:{
+          risk:"high",
+          last:"Until target lab value (about 6 h if IV, 12 h if SC).",
+          target:"aPTT, anti-Xa activity or ACT within local normal range.",
+          next:"Resume only after catheter withdrawal; low-dose UFH or LMWH may bridge in the interim."
+        },
+        deep:{risk:"high", last:"Same as neuraxial procedures.", target:"As above.", next:"As per neuraxial recommendations."},
+        superficial:{risk:"mod", last:"Zero, if within/below therapeutic range.", target:"No routine testing.", next:"At the routinely prescribed next time point."}
+      }
+    }
+  },
+  {
+    id:"fonda",
+    name:"Fondaparinux",
+    agents:"synthetic pentasaccharide, factor Xa inhibitor",
+    note:"Low dose ≤2.5 mg/day; high dose >2.5 mg/day. High-dose neuraxial procedures are not recommended by the guideline except when unavoidable.",
+    doses:["low","high"],
+    sections:{
+      low:{
+        neuraxial:{
+          risk:"high",
+          last:"36 h before the procedure (72 h if CrCl <50 ml/min, or reduce dose to 1.5 mg/day).",
+          target:"No routine testing.",
+          next:"Per postoperative VTE prophylaxis guidelines."
+        },
+        deep:{risk:"high", last:"Same as neuraxial procedures.", target:"No routine testing.", next:"As per neuraxial recommendations."},
+        superficial:{risk:"low", last:"Zero.", target:"No routine testing.", next:"At the routinely prescribed next time point."}
+      },
+      high:{
+        neuraxial:{
+          risk:"high",
+          last:"Neuraxial procedures are NOT recommended. If unavoidable (e.g. catheter withdrawal), an interval of about 4 days is proposed.",
+          target:"Calibrated anti-Xa activity within local normal range.",
+          next:"Per postoperative VTE prophylaxis / therapeutic anticoagulation guidelines."
+        },
+        deep:{risk:"high", last:"Same as neuraxial procedures.", target:"As above.", next:"As per neuraxial recommendations."},
+        superficial:{risk:"mod", last:"Zero, if within/below therapeutic range.", target:"No routine testing.", next:"At the routinely prescribed next time point."}
+      }
+    }
+  },
+  {
+    id:"aspirin",
+    name:"Aspirin",
+    agents:"acetylsalicylic acid",
+    note:"Low-dose aspirin (<200 mg) is treated as compatible with neuraxial procedures throughout the guideline. High dose is ≥200 mg/day.",
+    doses:["low","high"],
+    sections:{
+      low:{
+        neuraxial:{
+          risk:"low",
+          last:"Zero — not a contraindication if risk–benefit analysis is favourable. Single-puncture spinal preferred over epidural.",
+          target:"No routine testing.",
+          next:"At the routinely prescribed next time point."
+        },
+        deep:{risk:"low", last:"Same as neuraxial procedures.", target:"No routine testing.", next:"As per neuraxial recommendations."},
+        superficial:{risk:"low", last:"Zero.", target:"No routine testing.", next:"At the routinely prescribed next time point."}
+      },
+      high:{
+        neuraxial:{
+          risk:"mod",
+          last:"3 days (normal platelet counts) up to 7 days before the procedure.",
+          target:"Consider specific platelet function tests within local normal range.",
+          next:"Minimum of 6 h after the procedure."
+        },
+        deep:{risk:"mod", last:"Same as neuraxial procedures.", target:"As above.", next:"As per neuraxial recommendations."},
+        superficial:{risk:"mod", last:"Zero, if within/below therapeutic range.", target:"Consider platelet function tests if suspected accumulation.", next:"At the routinely prescribed next time point."}
+      }
+    }
+  },
+  {
+    id:"p2y12",
+    name:"P2Y12 Inhibitors",
+    agents:"clopidogrel · prasugrel · ticagrelor",
+    note:"Considered to carry a higher bleeding risk than aspirin. Intervals depend on the specific agent's platelet-inhibition duration.",
+    doses:null,
+    sections:{
+      neuraxial:{
+        risk:"high",
+        last:"5 days (ticagrelor); 5–7 days (clopidogrel); 7 days (prasugrel) — or until target laboratory value.",
+        target:"Consider specific platelet function tests within local normal range.",
+        next:"Without delay for 75 mg clopidogrel; minimum 24 h for prasugrel/ticagrelor; minimum 2 days for 300 mg clopidogrel. Resume only after catheter withdrawal."
+      },
+      deep:{
+        risk:"high",
+        last:"Same as neuraxial procedures above.",
+        target:"As above.",
+        next:"As per neuraxial recommendations above."
+      },
+      superficial:{
+        risk:"mod",
+        last:"Zero, if within/below the patient's therapeutic range — after careful risk–benefit analysis.",
+        target:"No routine testing suggested.",
+        next:"At the routinely prescribed next time point."
+      }
+    }
+  },
+  {
+    id:"combo",
+    name:"Combinations",
+    agents:"aspirin + anticoagulant · aspirin + antiplatelet · multi-drug regimens",
+    note:"Core principle (R19): when antithrombotic drugs are combined, the therapy-free interval equals that of the drug with the longest individual interval — the combination itself does not lengthen it further.",
+    doses:null,
+    sections:{
+      neuraxial:{
+        risk:"high",
+        last:"Aspirin: 0, plus the full time interval of the specific co-administered anticoagulant or antiplatelet drug (use the longer of the two intervals).",
+        target:"Specific laboratory test for the combined anticoagulant/antiplatelet drug, where available.",
+        next:"Aspirin resumes at the routinely prescribed time point; the combined anticoagulant/antiplatelet drug resumes per guidelines on therapeutic anticoagulation or platelet inhibition, about 24 h postop."
+      },
+      deep:{
+        risk:"high",
+        last:"Same principle as neuraxial procedures above.",
+        target:"As above.",
+        next:"As per neuraxial recommendations above."
+      },
+      superficial:{
+        risk:"mod",
+        last:"Zero, if within/below therapeutic range — combinations are not an absolute contraindication for superficial blocks.",
+        target:"Consider specific laboratory tests for the combined agents.",
+        next:"At the routinely prescribed next time point."
+      }
+    }
+  }
+];
+
+const SECTION_META = {
+  neuraxial:{ label:"Neuraxial Blocks", sub:"Spinal · epidural — Table 2 / Table 3", icon:"◆" },
+  deep:{ label:"Deep Nerve Blocks", sub:"Non-compressible, high-risk PNB — Table 2 / Table 3", icon:"▲" },
+  superficial:{ label:"Superficial Nerve Blocks", sub:"Compressible, low-risk PNB — Table 2 / Table 4", icon:"●" }
+};
+
+const RISK_LABEL = { high:"High risk", mod:"Caution", low:"Low risk" };
+
+let activeDrug = DRUGS[0].id;
+let activeDose = {}; // per-drug selected dose tier
+
+function render(){
+  renderTabs();
+  renderMain();
+}
+
+function renderTabs(){
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = '';
+  DRUGS.forEach((d, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (d.id === activeDrug ? ' active' : '');
+    btn.innerHTML = `<span class="tab-index util">${String(i+1).padStart(2,'0')}</span>${d.name}`;
+    btn.onclick = () => { activeDrug = d.id; render(); window.scrollTo({top: document.getElementById('main').offsetTop - 10, behavior:'smooth'}); };
+    tabs.appendChild(btn);
+  });
+}
+
+function renderMain(){
+  const drug = DRUGS.find(d => d.id === activeDrug);
+  const main = document.getElementById('main');
+  main.innerHTML = '';
+
+  const head = document.createElement('div');
+  head.className = 'drug-head';
+  head.innerHTML = `<div class="drug-name">${drug.name}</div><div class="drug-agents sans">${drug.agents}</div>`;
+  main.appendChild(head);
+
+  const note = document.createElement('div');
+  note.className = 'drug-note';
+  note.textContent = drug.note;
+  main.appendChild(note);
+
+  let sections = drug.sections;
+
+  if(drug.doses){
+    if(!activeDose[drug.id]) activeDose[drug.id] = drug.doses[0];
+    const toggle = document.createElement('div');
+    toggle.className = 'dose-toggle';
+    drug.doses.forEach(dose => {
+      const b = document.createElement('button');
+      b.textContent = dose === 'low' ? 'Low dose' : 'High dose';
+      if(activeDose[drug.id] === dose) b.classList.add('active');
+      b.onclick = () => { activeDose[drug.id] = dose; render(); };
+      toggle.appendChild(b);
+    });
+    main.appendChild(toggle);
+    sections = drug.sections[activeDose[drug.id]];
+  }
+
+  const grid = document.createElement('div');
+  grid.className = 'grid';
+
+  ['neuraxial','deep','superficial'].forEach(key => {
+    const s = sections[key];
+    const meta = SECTION_META[key];
+    const card = document.createElement('div');
+    card.className = `card risk-${s.risk}`;
+    card.innerHTML = `
+      <div class="card-head">
+        <div>
+          <div class="card-title">${meta.icon} ${meta.label}</div>
+        </div>
+        <div class="risk-badge">${RISK_LABEL[s.risk]}</div>
+      </div>
+      <div class="card-examples sans">${meta.sub}</div>
+      <div class="timeline">
+        <div class="tl-node left">Last dose<span class="tl-time">${shortTime(s.last)}</span></div>
+        <div class="tl-line"></div>
+        <div class="tl-node right">Next dose<span class="tl-time">${shortTime(s.next)}</span></div>
+      </div>
+      <div class="field"><span class="label">Time from last intake to intervention</span>${s.last}</div>
+      <div class="field"><span class="label">Target laboratory value</span>${s.target}</div>
+      <div class="field"><span class="label">Time from intervention to next dose</span>${s.next}</div>
+    `;
+    grid.appendChild(card);
+  });
+
+  main.appendChild(grid);
+}
+
+// Pull a short headline time value out of a longer sentence for the timeline signature.
+function shortTime(text){
+  const m = text.match(/^[^,.(]*(zero|not recommended)/i);
+  if(m) return /zero/i.test(m[0]) ? '0' : 'Avoid';
+  const m2 = text.match(/(\d+(\.\d+)?\s?(h|hrs?|hours?|days?|d)\b)/i);
+  return m2 ? m2[0] : text.split(/[,.]/)[0];
+}
+
+render();
+</script>
+</body>
+</html>
